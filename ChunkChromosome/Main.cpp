@@ -35,7 +35,7 @@ string getFileName(const string& s) {
                 return(s.substr(i+1, s.length( ) - i));
              }
 
-             return("");
+             return s;
 }
 
 
@@ -93,7 +93,7 @@ int main(int argc, char ** argv)
    String filename;
    String datfilename;
    datfilename.printf("%s",(getFileName(datfile.c_str())).c_str()); 
-   filename.printf("autoChunk-%s", (const char *) datfile);
+   filename.printf("autoChunk-%s", (const char *) datfilename);
 
    IFILE autoChunk = ifopen(filename, "wb");
 
@@ -118,7 +118,7 @@ int main(int argc, char ** argv)
       if (oStop >= markers) oStop = markers - 1;
 
       String filename;
-      filename.printf("chunk%d-%s", c + 1, (const char *) datfile);
+      filename.printf("chunk%d-%s", c + 1, (const char *) datfilename);
 
       IFILE output = ifopen(filename, "wb");
       IFILE snps = ifopen(filename + ".snps", "wb");
